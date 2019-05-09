@@ -3,8 +3,9 @@ Running org-mode html export in docker container
 
 installation
 ------------
+docker pull  hsnuhayato/org-exporter
 
-Download `docker-org-export` script and add it to your PATH.
+Download `docker-org-export` and `docker-org-export-pdf` script and add it to your PATH.
 
 running
 -------
@@ -25,3 +26,9 @@ There is `seqdiag` support, so you can use this in your source code:
     #+end_src
    
 
+support pdf export
+------------------
+* Linux user: $ docker-org-export-pdf index.org
+
+* Windows user(power shell): >  docker run --rm -i -t -v C:\Users\username:/emacs/tmp --workdir=/emacs hsnuhayato/org-exporter emacs --batch --load /emacs/emacs_init.el --file /emacs/tmp/index.org --eval '(org-latex-export-to-pdf)'
+    * suppose that the target file is C:\Users\username\index.org. Sorry i haven't made a bat for windows, yet.
