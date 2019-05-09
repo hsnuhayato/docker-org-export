@@ -7,3 +7,5 @@
 (package-install 'htmlize)
 (package-install 'json-mode)
 (package-install 'erlang)
+(package-install 'org)
+;; (package-install 'puml-mode)
