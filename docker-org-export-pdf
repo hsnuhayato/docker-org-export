@@ -1,2 +1,2 @@
 #!/bin/sh
-docker run --rm -i -t -v $(pwd):$(pwd) --workdir=$(pwd) -u $(id -u) org-exporter emacs --batch --load /emacs/emacs_init.el --file $1 --eval '(org-latex-export-to-pdf)'
+docker run --rm -i -t -v $(pwd):$(pwd) --workdir=$(pwd) -u $(id -u) hsnuhayato/org-exporter emacs --batch --load /emacs/emacs_init.el --file $1 --eval '(org-latex-export-to-pdf)'
