@@ -36,7 +36,9 @@
 ;; org-babelで使用する言語を登録
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((plantuml . t)))
+ '((plantuml . t)
+   (gnuplot . t)
+   ))
 
 (setq org-confirm-babel-evaluate nil)
 

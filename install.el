@@ -5,6 +5,7 @@
 (package-initialize)
 (package-install 'org-plus-contrib)
 (package-install 'htmlize)
+(package-install 'gnuplot)
 (package-install 'json-mode)
 (package-install 'erlang)
 (package-install 'org)

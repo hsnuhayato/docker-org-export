@@ -3,7 +3,7 @@ FROM thomasweise/docker-texlive-full
 RUN apt-get update && \
     apt-get install -y software-properties-common && \
     apt-get update && \
-    apt-get install -y emacs python-seqdiag graphviz default-jre plantuml
+    apt-get install -y emacs python-seqdiag graphviz default-jre plantuml gnuplot
 
 ENV DEBIAN_FRONTEND noninteractive
 ADD install.el /emacs/install.el
