@@ -1,0 +1,198 @@
+#+TITLE: org-modeがいいぞ
+#+AUTHOR: wukun
+#+DATE:  {{{time(%Y年%m月%d日)}}}
+#+OPTIONS: toc:nil H:2 num:t \n:nil
+#+OPTIONS: ^:{}
+#+LANGUAGE: ja
+#+LaTeX_CLASS_OPTIONS: [a4paper]
+#+LaTeX_CLASS: jsarticle
+#+LATEX_HEADER: \usepackage{longtable}
+# #+LATEX_HEADER: \usepackage[cache=false]{minted}
+#+TOC: headlines 2
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
+
+* 適用
+本書は、ホームレスになる手順を示す。
+
+* 必要機材
+
+|---+--------------+--------------------+------+--------------|
+|   | 項目         | メーカー，品名など | 数量 | 備考         |
+| / | <>           | <>                 |   <> | <>           |
+|---+--------------+--------------------+------+--------------|
+|   | thinkpad     | lenovo             |    1 |              |
+|---+--------------+--------------------+------+--------------|
+|   | 電源ケーブル | ー                 |    1 |              |
+|---+--------------+--------------------+------+--------------|
+|   | ディスプレイ | ー                 |    1 |              |
+|---+--------------+--------------------+------+--------------|
+|   | スコップ     |                    |    1 | 埋蔵金発掘用 |
+|---+--------------+--------------------+------+--------------|
+
+
+* 作業条件
+晴れの日
+
+* 作業環境
+本栖湖キャンプ場
+
+* 作業実施者
+ホームレス
+
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
+* ご飯しようぜ
+お腹空いた
+
+** フローチャート図
+フローチャート (flowchart、流れ図) は、プロセスの各ステップを箱で表し、
+流れをそれらの箱の間の矢印で表すことで、アルゴリズムやプロセスを表現する図である。
+
+#+BEGIN_SRC plantuml :file flow.png
+skinparam monochrome false
+header statusPlugin_loop
+
+start
+:鍋用意;
+repeat
+:味付け;
+:鍋投入;
+ if (美味しそう?) then (true)
+  :皿に移る;
+  :美味しく頂く;
+ endif
+repeat while (お腹いっぱい?) 
+:片付け;
+stop
+
+#+END_SRC
+#+CAPTION: ご飯
+#+ATTR_LATEX: :width 0.3\hsize
+#+RESULTS:
+[[file:flow.png]]
+
+** シーケンス図
+シーケンス図（Sequence Diagram）. シーケンス図とは、
+クラスやオブジェクト間のやりとりを時間軸に沿って表現する図です。
+機能ごとに相互作用（Interaction）と呼ばれる下記のようなフレーム内に処理内容を記述します。
+
+#+BEGIN_SRC plantuml :file sequence.png
+skinparam monochrome false
+header sequence
+hide footbox
+
+actor "homeless" as user
+participant "processA" as pa
+participant "processB" as pb
+actor "memory" as enemy
+participant "processC" as pc
+
+user -> pa: 関数A呼び出す
+activate pa
+
+
+pa -> pc: 関数B呼び出す
+activate pc
+pc -> enemy: 書き込み
+enemy --> pc
+pc -> enemy: 読み出す
+enemy --> pc 
+deactivate pc
+
+
+pa -> pb: 関数C呼び出す
+activate pb
+pb -> enemy: 書き込み
+enemy --> pb
+pb -> enemy : 読み出す
+enemy --> pb
+
+pb --> pa
+deactivate pb
+
+pa -> pb: 関数D呼び出す
+activate pb
+pb -> enemy: 読み出す
+enemy --> pb
+pb --> pa
+deactivate pb
+
+deactivate pb
+
+pa --> user 
+deactivate pa
+#+END_SRC
+#+CAPTION: シーケンズ
+#+ATTR_LATEX: :width 0.6\hsize
+#+RESULTS:
+[[file:sequence.png]]
+
+** ユースケース図
+ユースケース図とは、ユーザ（外部システムも含む）の要求に対するシステムの振る舞いを表現する図です。 ユースケース図はシステムの要件定義についての俯瞰的情報を提供します。 
+#+BEGIN_SRC plantuml :file use_case.png
+actor :"ホームレスA": as TM
+actor :"ホームレスB": as TR
+actor :"ホームレスC": as AS
+actor :"ホームレスD": as SP
+
+rectangle "switch box" {
+usecase (Set \n Limits) as set
+usecase (Analyze \n Risk) as analyze
+usecase (Price \n Deal) as price
+usecase (Capture \n Deal) as capture
+usecase (Update \n Accounts) as update
+usecase (Value \n Deal) as value
+}
+
+TM -- set
+TR -- analyze
+TR -- price
+TR -- capture
+analyze ..> value : <<include>>
+price ..> value : <<include>>
+AS -- update
+SP -- price
+SP -- capture
+
+#+END_SRC
+#+CAPTION: use_case
+#+NAME: fig:use_case
+#+ATTR_LATEX: :height 0.5\hsize
+#+RESULTS:
+[[file:use_case.png]]
+
+#+BEGIN_EXPORT latex
+\newpage
+#+END_EXPORT
+
+* ソースコード
+ハイライトもできるらしいが、まだ上手くできていない。今後の課題とさせていただきます。
+#+BEGIN_SRC c++ -n
+#include <iostream>
+
+int main(int argc, char** argv)
+{
+  std::cout << "Hello, world." << std::endl;
+  return 0;
+}
+#+END_SRC
+
+* Gnuplot
+gnuplotも直接に書いっちゃう！！便利！！
+
+#+begin_src gnuplot :file output.png
+set xlabel 'step' font 'Times-New-roman,20'
+set ylabel 'rad' font 'Times-New-roman,20'
+plot 'data.log' u 3 w l title "mydata"
+#+end_src
+#+CAPTION: 関節軌道
+#+ATTR_LATEX: :width 1\hsize
+#+RESULTS:
+[[file:output.png]]

@@ -1,11 +1,11 @@
-Running org-mode html export in docker container
+Running org-mode html and pdf export in docker container
 ================================================
 
 installation
 ------------
-docker pull  hsnuhayato/org-exporter
+docker pull  hsnuhayato/org-exporter.
 
-Download `docker-org-export` and `docker-org-export-pdf` script and add it to your PATH.
+Download `docker-org-export` and `docker-org-export-pdf` script from ![github](https://github.com/hsnuhayato/docker-org-export/tree/support_pdf "github") repository(support_pdf branch) and add it to your PATH.
 
 running
 -------
@@ -25,10 +25,11 @@ There is `seqdiag` support, so you can use this in your source code:
     }
     #+end_src
    
+Also, support plantuml and gnuplot.Please refer to the example.org file in support_pdf branch of my ![github](https://github.com/hsnuhayato/docker-org-export/tree/support_pdf "github") repository.
 
 support pdf export
 ------------------
-* Linux user: $ docker-org-export-pdf index.org
+* Linux user: $ docker-org-export-pdf example.org
 
-* Windows user(power shell): >  docker run --rm -i -t -v C:\Users\username:/emacs/tmp --workdir=/emacs hsnuhayato/org-exporter emacs --batch --load /emacs/emacs_init.el --file /emacs/tmp/index.org --eval '(org-latex-export-to-pdf)'
-    * suppose that the target file is C:\Users\username\index.org. Sorry i haven't made a bat for windows, yet.
+* Windows user(power shell): >  docker run --rm -i -t -v C:\Users\username:/emacs/tmp --workdir=/emacs hsnuhayato/org-exporter emacs --batch --load /emacs/emacs_init.el --file /emacs/tmp/example.org --eval '(org-latex-export-to-pdf)'
+    * suppose that the target file is C:\Users\username\example.org. Sorry i haven't made a bat for windows, yet.
